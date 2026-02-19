@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const Helper = require('./models/Helper');
 const User = require('./models/User');
+const mathPuzzleRoutes = require('./routes/mathPuzzle');
 
 const app = express();
 app.use(cors());
@@ -47,6 +48,9 @@ app.post('/api/progress', async (req, res) => {
     res.status(500).json({ error: 'Failed to save progress' });
   }
 });
+
+// Math Puzzle Routes
+app.use('/api/puzzle', mathPuzzleRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
